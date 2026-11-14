@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "preparedAt": "2026-11-14",
+    "purpose": "SOL SURVIVOR için NASA Curiosity RAD ölçümlerinin bilimsel referans özeti.",
+    "scientificBoundary": "Bu ölçümler Curiosity'nin Gale Krateri'ndeki belirli zaman ve konumdaki dış ortam gözlemleridir; habitat içi doz, oyuncu sağlığı veya doğrudan oyun tehlike puanı değildir."
+  },
+  "instrument": {
+    "id": "MSL-RAD",
+    "name": "Radiation Assessment Detector",
+    "mission": "NASA Mars Science Laboratory / Curiosity",
+    "measurementLocation": "Curiosity rover deck, Gale Crater, Mars",
+    "measures": ["Enerjik yüklü parçacıklar", "Nötronlar", "Gama ışınları"]
+  },
+  "measurements": [
+    {
+      "id": "rad-gale-gcr-absorbed-dose-2012-2013",
+      "metric": "absorbedDoseRate",
+      "value": 0.21,
+      "uncertainty": 0.04,
+      "unit": "mGy/day",
+      "radiationSource": "Galactic Cosmic Rays (GCR)",
+      "observationPeriod": "2012-08-07 to 2013-06-01 (approximately first 300 sols)",
+      "location": "Gale Crater, Mars",
+      "source": {
+        "citation": "Hassler et al. (2014), Mars' Surface Radiation Environment Measured with the Mars Science Laboratory's Curiosity Rover",
+        "doi": "10.1126/science.1244797",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24324275/"
+      }
+    },
+    {
+      "id": "rad-gale-gcr-dose-equivalent-2012-2013",
+      "metric": "doseEquivalentRate",
+      "value": 0.64,
+      "uncertainty": 0.12,
+      "unit": "mSv/day",
+      "radiationSource": "Galactic Cosmic Rays (GCR)",
+      "observationPeriod": "2012-08-07 to 2013-06-01 (approximately first 300 sols)",
+      "location": "Gale Crater, Mars",
+      "source": {
+        "citation": "Hassler et al. (2014), Mars' Surface Radiation Environment Measured with the Mars Science Laboratory's Curiosity Rover",
+        "doi": "10.1126/science.1244797",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24324275/"
+      }
+    }
+  ],
+  "scientificContext": {
+    "mainRadiationSources": [
+      {"code": "GCR", "name": "Galactic Cosmic Rays", "note": "Mars yüzeyindeki arka plan radyasyonunun önemli kaynaklarından biridir."},
+      {"code": "SEP", "name": "Solar Energetic Particles", "note": "Güneş patlamaları ve koronal kütle atımlarıyla ilişkilendirilebilen olaylardır; RAD yüzey gözlemlerinde zamanla değişkenlik gösterebilir."}
+    ],
+    "observationNotes": [
+      "NASA'nın ilk 10 aylık RAD yüzey gözlemlerinde ölçümlerin neredeyse tamamı GCR kaynaklıydı.",
+      "Atmosferik kalkanlama gün-gece döngüsü ve mevsimle değiştiği için yüzey doz hızı sabit değildir.",
+      "DONKI'deki FLR, CME veya SEP kayıtları Mars yüzeyinde ölçülmüş radyasyon dozu değildir."
+    ]
+  },
+  "gameModelingBoundary": {
+    "included": "Yalnızca bilimsel referans ölçümleri ve bağlamı.",
+    "excluded": ["Kaynak çubuğu etkileri", "Oyuncu hasarı", "Oyun zorluğu veya risk puanı", "Habitat içi radyasyon dozu"]
+  }
+}
