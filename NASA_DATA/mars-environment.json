@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "preparedAt": "2026-11-14",
+    "purpose": "SOL SURVIVOR için oksijen üretimi, Mars çevresel gözlemi ve yaşam destek referansları.",
+    "scientificBoundary": "Bu dosya farklı görev ve konumlardan gelen doğrulanmış referansları içerir. Değerler tek bir Mars habitatının hazır performans modeli değildir."
+  },
+  "moxie": {
+    "dataType": "Mars flight performance measurement",
+    "instrument": "Mars Oxygen In-Situ Resource Utilization Experiment (MOXIE)",
+    "mission": "NASA Perseverance rover",
+    "location": "Jezero Crater, Mars",
+    "input": "Mars atmosferindeki carbon dioxide (CO2)",
+    "output": "Oxygen (O2)",
+    "performance": {
+      "completedRuns": 16,
+      "totalOxygenProduced": {
+        "value": 122,
+        "unit": "g"
+      },
+      "peakProductionRate": {
+        "value": 12,
+        "unit": "g/hour"
+      },
+      "oxygenPurity": {
+        "minimumValue": 98,
+        "unit": "percent",
+        "qualifier": "at peak performance"
+      },
+      "finalRunOxygenProduced": {
+        "value": 9.8,
+        "unit": "g"
+      }
+    },
+    "source": {
+      "organization": "NASA/JPL",
+      "published": "2023-09-06",
+      "url": "https://www.nasa.gov/solar-system/nasas-oxygen-generating-experiment-moxie-completes-mars-mission/"
+    },
+    "modelingBoundary": "MOXIE, gelecekteki daha büyük sistemlerin fizibilitesini gösteren teknoloji demonstratörüdür; bu küçük aracın üretim oranı doğrudan bir habitatın oksijen bütçesi değildir."
+  },
+  "meda": {
+    "dataType": "Mars environmental instrument capability",
+    "instrument": "Mars Environmental Dynamics Analyzer (MEDA)",
+    "mission": "NASA Perseverance rover",
+    "location": "Jezero Crater, Mars",
+    "measurementDomains": [
+      "Wind speed and direction",
+      "Air temperature",
+      "Ground temperature",
+      "Atmospheric pressure",
+      "Relative humidity",
+      "Solar and thermal radiation",
+      "Atmospheric dust amount and particle size"
+    ],
+    "source": {
+      "organization": "NASA",
+      "url": "https://science.nasa.gov/mission/mars-2020-perseverance/science-instruments/"
+    },
+    "modelingBoundary": "Bu bölüm ölçülebilen değişkenleri tanımlar; gerçek zamanlı MEDA değerleri değildir. Jezero Krateri ölçümleri tüm Mars için tek bir hava durumu değeri olarak kullanılmamalıdır."
+  },
+  "eclss": {
+    "dataType": "Low-Earth-orbit life-support analogue",
+    "system": "Environmental Control and Life Support System (ECLSS)",
+    "operationalContext": "International Space Station",
+    "components": [
+      "Water Recovery System",
+      "Air Revitalization System",
+      "Oxygen Generation System"
+    ],
+    "waterRecoveryMilestone": {
+      "value": 98,
+      "unit": "percent",
+      "context": "NASA'nın 2023 ISS toplam su geri-kazanım kilometre taşı; Brine Processor Assembly ile doğrulandı."
+    },
+    "source": {
+      "organization": "NASA",
+      "published": "2023-06-20",
+      "url": "https://www.nasa.gov/missions/station/iss-research/nasa-achieves-water-recovery-milestone-on-international-space-station/"
+    },
+    "modelingBoundary": "ISS ECLSS, Mars yüzeyinde çalışmış bir sistem değildir. Mars habitatı için yardımcı tasarım analoğudur; Mars'a özgü su geri-kazanım oranı olarak sunulamaz."
+  },
+  "gameModelingBoundary": {
+    "included": "Kaynak gösterilmiş görev ölçümleri, araç kapsamları ve yaşam-destek analoğu.",
+    "excluded": [
+      "Oyun kaynak çubuğu değişimleri",
+      "Sistem arıza olasılıkları",
+      "Toz fırtınasının sabit enerji cezası",
+      "Habitat büyüklüğü veya mürettebat tüketim modeli"
+    ]
+  }
+}
