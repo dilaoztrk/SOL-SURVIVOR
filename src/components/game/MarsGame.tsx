@@ -1,10 +1,13 @@
-﻿import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import Phaser from "phaser";
 import MarsScene, { type GreenhouseEffect, type ScenarioAction, type ScenarioVisual } from "../../game/scenes/MarsScene";
 import type { MarsInteraction } from "../../game/scenes/MarsScene";
 import "./mars-game.css";
 
+import type { Effects } from "../../types/game";
+
 type MarsGameProps = {
+  decisionFeedback: { token: string; effects: Effects } | null;
   onInteract: (interaction: MarsInteraction) => void;
   controlsEnabled: boolean;
   feedback: { type: GreenhouseEffect; revision: number } | null;
@@ -13,7 +16,8 @@ type MarsGameProps = {
   scenarioAction: { type: ScenarioAction; token: string } | null;
 };
 
-export default function MarsGame({ onInteract, controlsEnabled, feedback, scenarioVisual, scenarioToken, scenarioAction }: MarsGameProps) {
+export default function MarsGame({ onInteract, controlsEnabled, feedback, scenarioVisual, scenarioToken, scenarioAction, decisionFeedback }: MarsGameProps) {
+  const [ready, setReady] = useState(false);
   const mountRef = useRef<HTMLDivElement>(null);
   const callbackRef = useRef(onInteract);
   const sceneRef = useRef<MarsScene | null>(null);
@@ -23,12 +27,12 @@ export default function MarsGame({ onInteract, controlsEnabled, feedback, scenar
   useEffect(() => {
     const parent = mountRef.current;
     if (!parent) return;
-    const scene = new MarsScene({ onInteract: (interaction) => callbackRef.current(interaction) });
+    const scene = new MarsScene({ onInteract: (interaction) => callbackRef.current(interaction), onReady: () => { canvasRef.current = parent.querySelector("canvas"); setReady(true); } });
     sceneRef.current = scene;
     const game = new Phaser.Game({
       type: Phaser.AUTO,
       parent,
-      backgroundColor: "#542f2c",
+      transparent: true,
       scale: { mode: Phaser.Scale.RESIZE, width: parent.clientWidth || 900, height: parent.clientHeight || 440 },
       render: { antialias: true, pixelArt: false },
       scene: [scene],
@@ -43,12 +47,15 @@ export default function MarsGame({ onInteract, controlsEnabled, feedback, scenar
   }, []);
 
   useEffect(() => {
+    if (!ready) return;
     sceneRef.current?.setControlsEnabled(controlsEnabled);
     if (controlsEnabled && canvasRef.current && document.activeElement !== canvasRef.current) canvasRef.current.focus();
-  }, [controlsEnabled]);
-  useEffect(() => { if (feedback) sceneRef.current?.showGreenhouseEffect(feedback.type); }, [feedback]);
-  useEffect(() => { sceneRef.current?.setSpecialEvent(scenarioVisual, scenarioToken); }, [scenarioVisual, scenarioToken]);
-  useEffect(() => { if (scenarioAction) sceneRef.current?.playScenarioAction(scenarioAction.type, scenarioAction.token); }, [scenarioAction]);
+  }, [controlsEnabled, ready]);
+  useEffect(() => { if (ready && feedback) sceneRef.current?.showGreenhouseEffect(feedback.type); }, [feedback, ready]);
+  useEffect(() => { if (ready) sceneRef.current?.setSpecialEvent(scenarioVisual, scenarioToken); }, [scenarioVisual, scenarioToken, ready]);
+  useEffect(() => { if (ready && scenarioAction) sceneRef.current?.playScenarioAction(scenarioAction.type, scenarioAction.token); }, [scenarioAction, ready]);
 
-  return <div className="mars-game" ref={mountRef} aria-label="WASD veya yön tuşlarıyla astronotu hareket ettir" />;
+  useEffect(() => { if (ready && decisionFeedback) sceneRef.current?.showDecisionFeedback(decisionFeedback.effects, decisionFeedback.token); }, [decisionFeedback, ready]);
+
+  return <div className="mars-game" ref={mountRef} aria-label="Kart kararları ve özel olay animasyonları" />;
 }

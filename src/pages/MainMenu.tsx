@@ -1,3 +1,8 @@
+import { useState } from "react";
+import MenuPanel, {
+  type MenuPanelName,
+} from "../components/ui/MenuPanel";
+
 import {
   Play,
   BookOpen,
@@ -27,6 +32,7 @@ export default function MainMenu({
   onSettings,
   onAbout,
 }: MainMenuProps) {
+  const [panel, setPanel] = useState<MenuPanelName | null>(null);
   return (
     <main className="main-menu">
       {/* MARS BACKGROUND */}
@@ -90,21 +96,45 @@ export default function MainMenu({
             GÖREVİ BAŞLAT
           </GameButton>
 
-          <GameButton icon={<BookOpen size={21} />} onClick={onBriefing}>
-            GÖREV BİLGİLENDİRMESİ
-          </GameButton>
+          <GameButton
+  icon={<BookOpen size={21} />}
+  onClick={() => {
+    onBriefing?.();
+    setPanel("briefing");
+  }}
+>
+  GÖREV BİLGİLENDİRMESİ
+</GameButton>
 
-          <GameButton icon={<Database size={21} />} onClick={onNasaData}>
-            NASA VERİLERİ
-          </GameButton>
+<GameButton
+  icon={<Database size={21} />}
+  onClick={() => {
+    onNasaData?.();
+    setPanel("nasa");
+  }}
+>
+  NASA VERİLERİ
+</GameButton>
 
-          <GameButton icon={<Settings size={21} />} onClick={onSettings}>
-            AYARLAR
-          </GameButton>
+<GameButton
+  icon={<Settings size={21} />}
+  onClick={() => {
+    onSettings?.();
+    setPanel("settings");
+  }}
+>
+  AYARLAR
+</GameButton>
 
-          <GameButton icon={<Info size={21} />} onClick={onAbout}>
-            HAKKINDA
-          </GameButton>
+<GameButton
+  icon={<Info size={21} />}
+  onClick={() => {
+    onAbout?.();
+    setPanel("about");
+  }}
+>
+  HAKKINDA
+</GameButton>
         </nav>
       </section>
 
@@ -123,7 +153,9 @@ export default function MainMenu({
         <div className="main-menu__footer-right">
           <span>SÜRÜM 001</span>
         </div>
-      </footer>
+           </footer>
+
+      <MenuPanel panel={panel} onClose={() => setPanel(null)} />
     </main>
   );
 }

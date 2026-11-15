@@ -1,0 +1,34 @@
+.sra-player{position:fixed;inset:0;z-index:10000;background:#101822;color:#edf1ec;font-family:Inter,Arial,sans-serif;isolation:isolate}.sra-player .viewport{position:absolute;inset:0;touch-action:none;cursor:grab}.sra-player canvas{display:block;width:100%;height:100%}.sra-player:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#06111aec,transparent 70%);pointer-events:none;z-index:1}.sra-heading{position:absolute;z-index:2;top:30px;left:35px;right:35px;display:flex;justify-content:space-between;font-size:15px;letter-spacing:2px;pointer-events:none}.sra-heading div>span{display:block;font-size:8px;color:#d19770;margin-top:9px}.sra-heading>span{font-size:12px;color:#aebfbf}.sra-caption{position:absolute;z-index:2;left:35px;bottom:40px;width:min(500px,calc(100% - 70px))}.sra-caption small{color:#eaa776;font:10px monospace}.sra-caption h2{font-size:34px;margin:15px 0 12px}.sra-caption p{font-size:12px;color:#a7bcc5;line-height:1.8}.sra-progress{height:3px;background:#ffffff20;margin:22px 0}.sra-progress i{display:block;height:100%;background:#ec9b65}.sra-caption button{background:#e99a65;color:#141c22;font:600 12px Arial;border:0;border-radius:4px;padding:14px 22px;cursor:pointer}.sra-caption button:focus-visible{outline:2px solid white;outline-offset:4px}.sra-no-cost{display:block;color:#7f9caa;font-size:9px;margin-top:12px}.sra-player .render-note{position:absolute;right:25px;bottom:15px;font-size:7px;color:#8098a6;z-index:2;left:auto;top:auto}@media(max-width:600px){.sra-heading{top:22px;left:20px;right:20px}.sra-caption{left:20px;bottom:30px;width:calc(100% - 40px)}.sra-caption h2{font-size:28px}}
+
+.sra-caption {
+  width: min(680px, calc(100% - 70px));
+}
+
+.sra-caption small {
+  font-size: 15px;
+}
+
+.sra-caption h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.2;
+}
+
+.sra-caption p {
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.sra-caption button {
+  padding: 18px 28px;
+  font-size: 18px;
+}
+
+.sra-caption .sra-no-cost {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 14px;
+}
+
+.sra-progress {
+  height: 6px;
+}

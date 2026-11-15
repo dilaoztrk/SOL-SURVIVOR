@@ -1,0 +1,16 @@
+/// <reference types="node" />
+import {test} from 'vitest';import assert from 'node:assert/strict';
+import {technicalAnimations} from '../technical/animations';
+import {createBaseModel,animateModel} from '../scene/model';
+import {createInitialSceneState,type PlaybackSnapshot} from '../animation/types';
+import {animationRegistry,resolveRequest} from '../animation/registry';
+import choices from '../integration/card-animation-map.json';
+import delayed from '../integration/delayed-animation-map.json';
+import events from '../integration/event-animation-map.json';
+import type {AnimationRequest} from '../animation/types';
+test('14 technical modules registered with no duplicate IDs',()=>{assert.equal(technicalAnimations.length,14);assert.equal(new Set(technicalAnimations.map(d=>d.id)).size,14);for(const d of technicalAnimations)assert.equal(animationRegistry[d.id],d);});
+test('all60 card choices and delayed/event mappings resolve against the combined registry',()=>{assert.equal(choices.length,60);assert.equal(new Set(choices.map(c=>c.cardId+':'+c.choiceId)).size,60);for(const row of [...choices,...delayed,...events]){assert.ok(row.animations.length);for(const step of row.animations)assert.doesNotThrow(()=>resolveRequest(step as AnimationRequest));}});
+test('both cleaning methods clear visual dust without mutating resource state',()=>{for(const id of ['robot_panel_clean','crew_panel_clean']){const s=createInitialSceneState(),r=resolveRequest({id});const next=animationRegistry[id].final(s,r);assert.equal(next.panelDust,0);assert.equal(s.panelDust,.85);assert.equal('energy' in next,false);}});
+test('quake repair clears inspection, temporary valve repair preserves risk',()=>{const s=createInitialSceneState();s.quakeInspection=true;s.failures.valve=true;const fixed=animationRegistry.temporary_repair.final(s,resolveRequest({id:'temporary_repair',variant:'quake'}));assert.equal(fixed.quakeInspection,false);const temporary=animationRegistry.temporary_repair.final(s,resolveRequest({id:'temporary_repair',variant:'valve'}));assert.equal(temporary.failures.valve,true);assert.equal(temporary.quakeInspection,true);});
+test('partial cleaning moves robot and removes dust progressively, while crew method leaves robot docked',()=>{for(const id of ['robot_panel_clean','crew_panel_clean']){const model=createBaseModel(),before=createInitialSceneState(),request=resolveRequest({id});const snapshot:PlaybackSnapshot={active:true,request,progress:.5,before,last:null};animateModel(model,before,snapshot,5);assert.equal(model.nodes.get('solar.dust.0')!.visible,false);assert.equal(model.nodes.get('solar.dust.5')!.visible,true);const pos=model.nodes.get('maintenance.robot')!.position.toArray();if(id==='robot_panel_clean')assert.notDeepEqual(pos,[9,.2,7]);else assert.deepEqual(pos,[9,.2,7]);model.dispose();}});
+test('technical transforms never accumulate across repeated frames',()=>{const model=createBaseModel(),before=createInitialSceneState(),request=resolveRequest({id:'battery_isolate'});const snapshot:PlaybackSnapshot={active:true,request,progress:.6,before,last:null};animateModel(model,before,snapshot,5);const first=model.nodes.get('tech.batterySpare')!.position.toArray();animateModel(model,before,snapshot,5);assert.deepEqual(model.nodes.get('tech.batterySpare')!.position.toArray(),first);model.dispose();});

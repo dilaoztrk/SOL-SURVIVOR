@@ -1,0 +1,111 @@
+[
+  {
+    "originSol": 3,
+    "choiceId": "A",
+    "dueSol": 7,
+    "animations": [
+      {
+        "id": "harvest_result"
+      }
+    ]
+  },
+  {
+    "originSol": 4,
+    "choiceId": "B",
+    "dueSol": 8,
+    "animations": [
+      {
+        "id": "delayed_failure",
+        "variant": "valve"
+      }
+    ]
+  },
+  {
+    "originSol": 7,
+    "choiceId": "A",
+    "dueSol": 11,
+    "animations": [
+      {
+        "id": "capacity_recovery",
+        "variant": "water"
+      }
+    ]
+  },
+  {
+    "originSol": 7,
+    "choiceId": "B",
+    "dueSol": 11,
+    "animations": [
+      {
+        "id": "delayed_failure",
+        "variant": "filter"
+      }
+    ]
+  },
+  {
+    "originSol": 10,
+    "choiceId": "A",
+    "dueSol": 14,
+    "animations": [
+      {
+        "id": "alarm_test",
+        "variant": "backup"
+      }
+    ]
+  },
+  {
+    "originSol": 12,
+    "choiceId": "B",
+    "dueSol": 15,
+    "animations": [
+      {
+        "id": "delayed_failure",
+        "variant": "heater"
+      }
+    ]
+  },
+  {
+    "originSol": 13,
+    "choiceId": "A",
+    "dueSol": 17,
+    "animations": [
+      {
+        "id": "capacity_recovery",
+        "variant": "food"
+      }
+    ]
+  },
+  {
+    "originSol": 16,
+    "choiceId": "B",
+    "dueSol": 19,
+    "animations": [
+      {
+        "id": "delayed_failure",
+        "variant": "battery"
+      }
+    ]
+  },
+  {
+    "originSol": 19,
+    "choiceId": "B",
+    "dueSol": 22,
+    "animations": [
+      {
+        "id": "delayed_failure",
+        "variant": "air"
+      }
+    ]
+  },
+  {
+    "originSol": 20,
+    "choiceId": "A",
+    "dueSol": 25,
+    "animations": [
+      {
+        "id": "capacity_recovery",
+        "variant": "power"
+      }
+    ]
+  }
+]

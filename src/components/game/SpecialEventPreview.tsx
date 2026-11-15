@@ -2,6 +2,7 @@
 import { ArrowDownRight, ArrowUpRight, Clock3, GitBranch, Minus } from "lucide-react";
 import type { ScenarioEffect, ScienceFact, SpecialEvent, SpecialIntervention } from "../../game/data/beyzaScenario";
 import type { ResourceKey, SpecialEventHistoryEntry } from "../../types/game";
+import RealMarsFactCard from "./RealMarsFactCard";
 
 type SpecialEventPreviewProps = {
   event: SpecialEvent;
@@ -50,6 +51,7 @@ export default function SpecialEventPreview({ event, scienceFact, onShowScience,
       <span className="decision-category">{localize(event.category)}</span>
       <span className="special-event-when">{localize(event.when)}</span>
       <h2 className="decision-title">{localize(event.title)}</h2>
+      <RealMarsFactCard sol={event.startSol} />
       {story.map((line, index) => <p className="special-event-story" key={index}>{localize(line)}</p>)}
 
       {eventResult && Object.keys(eventResult.applied).length > 0 && <div className="special-event-effects"><span className="special-event-effects-title">Motorun uyguladığı kaynak etkileri</span><ul className="scenario-effects">{(Object.entries(eventResult.applied) as [ResourceKey, number][]).map(([resource, amount]) => <EffectLine key={resource} effect={{ kind: "immediate", text: `${RESOURCE_LABELS[resource]} ${amount > 0 ? "+" : "−"}${Math.abs(amount)}` }} />)}</ul></div>}

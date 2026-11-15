@@ -1,0 +1,82 @@
+[
+  {
+    "eventId": "dust",
+    "sols": [
+      8,
+      9,
+      10
+    ],
+    "animations": [
+      {
+        "id": "dust_storm"
+      }
+    ]
+  },
+  {
+    "eventId": "dust_cleanup",
+    "sols": [
+      11
+    ],
+    "animations": [
+      {
+        "id": "robot_panel_clean"
+      }
+    ]
+  },
+  {
+    "eventId": "particles",
+    "sols": [
+      16
+    ],
+    "animations": [
+      {
+        "id": "radiation_alert"
+      }
+    ]
+  },
+  {
+    "eventId": "wind",
+    "sols": [
+      19
+    ],
+    "animations": [
+      {
+        "id": "wind_cleaning"
+      }
+    ]
+  },
+  {
+    "eventId": "impact",
+    "sols": [
+      21
+    ],
+    "animations": [
+      {
+        "id": "impact_archive"
+      }
+    ]
+  },
+  {
+    "eventId": "quake",
+    "sols": [
+      23
+    ],
+    "animations": [
+      {
+        "id": "marsquake"
+      }
+    ]
+  },
+  {
+    "eventId": "quake_repair",
+    "sols": [
+      23
+    ],
+    "animations": [
+      {
+        "id": "temporary_repair",
+        "variant": "quake"
+      }
+    ]
+  }
+]

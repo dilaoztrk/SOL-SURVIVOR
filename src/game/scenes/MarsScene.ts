@@ -1,11 +1,12 @@
 import Phaser from "phaser";
+import type { Effects, ResourceKey } from "../../types/game";
 
 export type MarsInteraction = "greenhouse";
 
 export type GreenhouseEffect = "harvest" | "maintenance" | "upgrade";
 export type ScenarioVisual = "dustStorm" | "panelIntervention" | "solarParticles" | "windCleaning" | "archive" | "quake";
 export type ScenarioAction = "panelClean" | "quakeRepair";
-type MarsSceneOptions = { onInteract: (interaction: MarsInteraction) => void };
+type MarsSceneOptions = { onInteract: (interaction: MarsInteraction) => void; onReady?: () => void };
 
 
 type Player = Phaser.GameObjects.Container & {
@@ -30,6 +31,7 @@ export default class MarsScene extends Phaser.Scene {
   private activeScenarioToken: string | null = null;
   private activeScenarioVisual: ScenarioVisual | null = null;
   private lastScenarioActionToken: string | null = null;
+  private lastDecisionToken: string | null = null;
   private readonly playerRadius = 16;
 
   constructor(options: MarsSceneOptions) {
@@ -39,12 +41,13 @@ export default class MarsScene extends Phaser.Scene {
 
   create() {
     this.scenery = this.add.container(0, 0);
-    this.drawLandscape();
-    this.drawBase();
-    this.drawGreenhouse();
-    this.drawSolarPanels();
+    // The original photographic background lives underneath this transparent layer.
+    this.greenhouseGlass = this.add.graphics();
+    this.solarPanelDust = this.add.graphics();
+    this.scenery.add([this.greenhouseGlass, this.solarPanelDust]);
 
     this.player = this.createAstronaut(290, 300) as Player;
+    this.player.setScale(0.6);
     this.scenery.add(this.player);
 
     this.controlHint = this.add.text(884, 16, "WASD / Y\u00f6n Tu\u015flar\u0131: Hareket | E: Etkile\u015fim", {
@@ -77,6 +80,8 @@ export default class MarsScene extends Phaser.Scene {
     this.scale.on(Phaser.Scale.Events.RESIZE, this.resizeScene, this);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, this.cleanup, this);
     this.resizeScene({ width: this.scale.width, height: this.scale.height } as Phaser.Structs.Size);
+    this.controlHint.setVisible(true);
+    this.options.onReady?.();
   }
 
   update(_time: number, delta: number) {
@@ -110,91 +115,8 @@ export default class MarsScene extends Phaser.Scene {
 
     const nearGreenhouse = Phaser.Math.Distance.Between(this.player.x, this.player.y, 665, 214) < 100;
     this.prompt.setVisible(nearGreenhouse);
-    this.prompt.setPosition(450, 365);
-    this.controlHint.setPosition(this.scale.width - 16, 16);
-  }
-
-  private drawLandscape() {
-    const g = this.add.graphics();
-    g.fillGradientStyle(0x542f2c, 0x542f2c, 0x9d513b, 0x9d513b, 1);
-    g.fillRect(0, 0, 900, 440);
-    g.fillStyle(0xc26949, 1);
-    g.fillEllipse(765, 92, 82, 82);
-    g.fillStyle(0xe6a270, 0.28);
-    g.fillEllipse(765, 92, 106, 106);
-    g.fillStyle(0x472d2b, 1);
-    g.fillPoints([[0, 242], [140, 160], [275, 242], [420, 174], [570, 252], [740, 175], [900, 248], [900, 440], [0, 440]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
-    g.fillStyle(0x7c3d31, 1);
-    g.fillPoints([[0, 305], [180, 252], [330, 315], [500, 260], [690, 318], [900, 270], [900, 440], [0, 440]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
-    g.fillStyle(0xb36042, 1);
-    g.fillRect(0, 320, 900, 120);
-    g.fillStyle(0xe29a65, 0.22);
-    for (let i = 0; i < 38; i++) g.fillCircle((i * 137) % 900, 330 + ((i * 71) % 100), 1 + (i % 3));
-    this.scenery.add(g);
-  }
-
-  private drawBase() {
-    const g = this.add.graphics();
-    g.fillStyle(0x272b2c, 1);
-    g.fillRoundedRect(90, 209, 188, 92, 8);
-    g.fillStyle(0x92918b, 1);
-    g.fillRoundedRect(105, 194, 158, 70, 8);
-    g.fillStyle(0x4e5c60, 1);
-    g.fillRoundedRect(120, 210, 45, 37, 4);
-    g.fillRoundedRect(174, 210, 73, 37, 4);
-    g.lineStyle(3, 0xd7a56e, 0.9);
-    g.strokeRoundedRect(90, 194, 188, 107, 8);
-    g.fillStyle(0x25292a, 1);
-    g.fillRect(65, 295, 240, 11);
-    this.scenery.add(g);
-    this.scenery.add(this.add.text(184, 182, "ARES-7", { fontFamily: "Arial", fontSize: "12px", color: "#f3d5b6", fontStyle: "bold" }).setOrigin(0.5));
-  }
-
-  private drawGreenhouse() {
-    const g = this.add.graphics();
-    g.fillStyle(0x202728, 0.95);
-    g.fillRoundedRect(602, 192, 142, 113, 12);
-    this.scenery.add(g);
-    this.greenhouseGlass = this.add.graphics();
-    this.greenhouseGlass.fillStyle(0x73928a, 0.62);
-    this.greenhouseGlass.fillRoundedRect(614, 204, 118, 86, 8);
-    this.scenery.add(this.greenhouseGlass);
-
-    const details = this.add.graphics();
-    details.lineStyle(4, 0xd7a56e, 1);
-    details.strokeRoundedRect(602, 192, 142, 113, 12);
-    details.lineBetween(673, 204, 673, 290);
-    details.lineBetween(614, 248, 732, 248);
-    details.fillStyle(0x5f8d58, 1);
-    for (const x of [630, 650, 696, 716]) {
-      details.fillRoundedRect(x - 6, 260, 12, 20, 5);
-      details.lineStyle(2, 0x9bbd73, 1);
-      details.lineBetween(x, 261, x - 5, 251);
-      details.lineBetween(x, 261, x + 5, 252);
-    }
-    this.scenery.add(details);
-    this.scenery.add(this.add.text(673, 180, "SERA", { fontFamily: "Arial", fontSize: "12px", color: "#fff1df", fontStyle: "bold" }).setOrigin(0.5));
-  }
-
-
-  private drawSolarPanels() {
-    const frames = this.add.graphics();
-    frames.fillStyle(0x252a30, 1);
-    frames.fillPoints([[382, 245], [465, 245], [477, 287], [394, 287]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
-    frames.fillPoints([[482, 245], [565, 245], [577, 287], [494, 287]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
-    frames.fillStyle(0x45616d, 1);
-    frames.fillPoints([[388, 250], [460, 250], [469, 281], [397, 281]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
-    frames.fillPoints([[488, 250], [560, 250], [569, 281], [497, 281]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
-    frames.lineStyle(2, 0xd2a16e, 1);
-    frames.strokePoints([[382, 245], [465, 245], [477, 287], [394, 287]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
-    frames.strokePoints([[482, 245], [565, 245], [577, 287], [494, 287]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
-    frames.lineStyle(1, 0x93a5a7, 0.75);
-    for (const x of [414, 438, 512, 536]) frames.lineBetween(x, 248, x + 8, 284);
-    this.scenery.add(frames);
-    this.solarPanelDust = this.add.graphics();
-    this.solarPanelDust.fillStyle(0xd4a36f, 0.8);
-    for (let i = 0; i < 28; i++) this.solarPanelDust.fillCircle(390 + (i * 29) % 178, 250 + (i * 17) % 32, 1 + i % 2);
-    this.scenery.add(this.solarPanelDust);
+    this.prompt.setPosition(this.scale.width / 2, this.scale.height * .83);
+    this.controlHint.setPosition(16, this.scale.height - 16).setOrigin(0, 1);
   }
 
   setSpecialEvent(type: ScenarioVisual | null, token: string | null) {
@@ -214,6 +136,7 @@ export default class MarsScene extends Phaser.Scene {
     if (type === "archive" || type === "panelIntervention") return;
 
     this.scenarioVisuals = this.add.container(0, 0);
+    this.scenery.add(this.scenarioVisuals);
     if (type === "dustStorm") {
       const haze = this.add.graphics();
       haze.fillStyle(0x342a2a, 0.25);
@@ -248,6 +171,20 @@ export default class MarsScene extends Phaser.Scene {
     repair.strokeRoundedRect(82, 187, 205, 120, 12);
     this.scenery.add(repair);
     this.tweens.add({ targets: repair, alpha: 0, duration: 900, onComplete: () => repair.destroy() });
+  }
+
+  showDecisionFeedback(effects: Effects, token: string) {
+    if (this.lastDecisionToken === token) return;
+    this.lastDecisionToken = token;
+    const labels: Record<ResourceKey, string> = { energy: "Enerji", food: "Gıda", lifeSupport: "Yaşam Desteği", radiationShield: "Kalkan" };
+    const positions: Record<ResourceKey, [number, number]> = { energy: [475, 230], food: [673, 180], lifeSupport: [180, 180], radiationShield: [180, 150] };
+    for (const [key, amount] of Object.entries(effects) as [ResourceKey, number][]) {
+      if (!amount) continue;
+      const [x, y] = positions[key];
+      const text = this.add.text(x, y, `${labels[key]} ${amount > 0 ? '+' : ''}${amount}`, { fontFamily: "Arial", fontSize: "15px", fontStyle: "bold", color: amount > 0 ? "#b6ffcd" : "#ffb09b", backgroundColor: "#172023dd", padding: { x: 8, y: 6 } }).setOrigin(.5);
+      this.scenery.add(text);
+      this.tweens.add({ targets: text, y: y - 45, alpha: 0, duration: 2200, onComplete: () => text.destroy() });
+    }
   }
 
   private clearSolarPanelDust() {
@@ -307,7 +244,7 @@ export default class MarsScene extends Phaser.Scene {
     const scaleY = size.height / 440;
     this.scenery.setScale(scaleX, scaleY);
     this.prompt.setScale(Math.min(scaleX, scaleY));
-    this.controlHint.setPosition(size.width - 16, 16);
+    this.controlHint.setPosition(16, size.height - 16).setOrigin(0, 1);
   }
 
   private getWorldBounds() {

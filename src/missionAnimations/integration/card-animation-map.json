@@ -1,0 +1,786 @@
+[
+  {
+    "cardId": "sol-1",
+    "sol": 1,
+    "choiceId": "A",
+    "label": "Tam sistem kontrolünü yap.",
+    "animations": [
+      {
+        "id": "system_check",
+        "variant": "full"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-1",
+    "sol": 1,
+    "choiceId": "B",
+    "label": "Mevcut ayarlarla başla; ayrıntılı kontrolü ertele.",
+    "animations": [
+      {
+        "id": "system_check",
+        "variant": "quick"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-2",
+    "sol": 2,
+    "choiceId": "A",
+    "label": "Hazırlık işini sonraki vardiyaya bırak.",
+    "animations": [
+      {
+        "id": "continue_operation",
+        "variant": "limited",
+        "location": "shelter"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-2",
+    "sol": 2,
+    "choiceId": "B",
+    "label": "Bugünkü vardiyayı sığınağı hazırlamaya ayır.",
+    "animations": [
+      {
+        "id": "shelter_prepare",
+        "variant": "full"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-3",
+    "sol": 3,
+    "choiceId": "A",
+    "label": "Aydınlatma bakımını ve ayarını şimdi yap.",
+    "animations": [
+      {
+        "id": "greenhouse_lighting",
+        "variant": "maintain"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-3",
+    "sol": 3,
+    "choiceId": "B",
+    "label": "Mevcut aydınlatmayla devam et.",
+    "animations": [
+      {
+        "id": "greenhouse_lighting",
+        "variant": "keep"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-4",
+    "sol": 4,
+    "choiceId": "A",
+    "label": "Valfi değiştir, hattı test et.",
+    "animations": [
+      {
+        "id": "valve_replace"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-4",
+    "sol": 4,
+    "choiceId": "B",
+    "label": "Geçici ayar yap; tam bakımı ertele.",
+    "animations": [
+      {
+        "id": "temporary_repair",
+        "variant": "valve"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-5",
+    "sol": 5,
+    "choiceId": "A",
+    "label": "Panel grubunu geçici ayırıp uzaktan temizlik yap.",
+    "animations": [
+      {
+        "id": "power_reroute",
+        "variant": "critical"
+      },
+      {
+        "id": "robot_panel_clean"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-5",
+    "sol": 5,
+    "choiceId": "B",
+    "label": "Üretimi sürdür; dış bakım ekibiyle kontrollü temizlik yap.",
+    "animations": [
+      {
+        "id": "crew_panel_clean"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-6",
+    "sol": 6,
+    "choiceId": "A",
+    "label": "Dış işi ertele, ekibi sığınak hazırlığına ayır.",
+    "animations": [
+      {
+        "id": "shelter_prepare",
+        "variant": "full"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-6",
+    "sol": 6,
+    "choiceId": "B",
+    "label": "Dış işi yap, sığınak hazırlığını sınırlı bırak.",
+    "animations": [
+      {
+        "id": "shelter_prepare",
+        "variant": "limited"
+      },
+      {
+        "id": "external_inspection"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-7",
+    "sol": 7,
+    "choiceId": "A",
+    "label": "Yeni filtreyi tak ve doğrulama testlerini başlat.",
+    "animations": [
+      {
+        "id": "filter_replace"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-7",
+    "sol": 7,
+    "choiceId": "B",
+    "label": "Mevcut filtreye geçici bakım yap.",
+    "animations": [
+      {
+        "id": "filter_service",
+        "variant": "water"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-8",
+    "sol": 8,
+    "choiceId": "A",
+    "label": "Ek rasyonla dinlenme arası ver; sonraki bakım vardiyasını koru.",
+    "animations": [
+      {
+        "id": "crew_meal_rest",
+        "variant": "extra"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-8",
+    "sol": 8,
+    "choiceId": "B",
+    "label": "Ek rasyon ayırma; dinlenmeyi ve bakım programını daha sınırlı yürüt.",
+    "animations": [
+      {
+        "id": "crew_meal_rest",
+        "variant": "limited"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-9",
+    "sol": 9,
+    "choiceId": "A",
+    "label": "Enerji ayırıp korunaklı çalışma düzenini kur.",
+    "animations": [
+      {
+        "id": "shelter_prepare",
+        "variant": "full"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-9",
+    "sol": 9,
+    "choiceId": "B",
+    "label": "Hazırlığı sınırlı tut, mevcut düzenle devam et.",
+    "animations": [
+      {
+        "id": "continue_operation",
+        "variant": "limited",
+        "location": "shelter"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-10",
+    "sol": 10,
+    "choiceId": "A",
+    "label": "Yedek alarm hattını kur ve test programını başlat.",
+    "animations": [
+      {
+        "id": "alarm_test",
+        "variant": "backup"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-10",
+    "sol": 10,
+    "choiceId": "B",
+    "label": "Mevcut hatla çalışmayı sürdür.",
+    "animations": [
+      {
+        "id": "continue_operation",
+        "variant": "normal",
+        "location": "shelter"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-11",
+    "sol": 11,
+    "choiceId": "A",
+    "label": "Enerji ayırıp korunaklı alanda kapsamlı test yap.",
+    "animations": [
+      {
+        "id": "system_check",
+        "variant": "full"
+      },
+      {
+        "id": "alarm_test",
+        "variant": "existing"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-11",
+    "sol": 11,
+    "choiceId": "B",
+    "label": "Kısmi test yap; yaşam destek bakımını da sınırla.",
+    "animations": [
+      {
+        "id": "system_check",
+        "variant": "quick"
+      },
+      {
+        "id": "maintenance_deferred",
+        "variant": "air"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-12",
+    "sol": 12,
+    "choiceId": "A",
+    "label": "Isıtma hattının bakımını şimdi tamamla.",
+    "animations": [
+      {
+        "id": "heater_service"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-12",
+    "sol": 12,
+    "choiceId": "B",
+    "label": "Mevcut hatla devam et; bakımı sonraya bırak.",
+    "animations": [
+      {
+        "id": "maintenance_deferred",
+        "variant": "heater"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-13",
+    "sol": 13,
+    "choiceId": "A",
+    "label": "Yedek modülün kurulum ve kabul testlerini başlat.",
+    "animations": [
+      {
+        "id": "backup_module_connect",
+        "variant": "module"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-13",
+    "sol": 13,
+    "choiceId": "B",
+    "label": "Ana hat ve mevcut hazır gıda rezerviyle devam et.",
+    "animations": [
+      {
+        "id": "continue_operation",
+        "variant": "normal",
+        "location": "utilities"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-14",
+    "sol": 14,
+    "choiceId": "A",
+    "label": "Enerjiyi kritik hizmetlere ve uzaktan bakıma ayır.",
+    "animations": [
+      {
+        "id": "power_reroute",
+        "variant": "critical"
+      },
+      {
+        "id": "external_inspection"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-14",
+    "sol": 14,
+    "choiceId": "B",
+    "label": "Sera faaliyetini koru; daha fazla dış ekip çalışması planla.",
+    "animations": [
+      {
+        "id": "greenhouse_lighting",
+        "variant": "keep"
+      },
+      {
+        "id": "external_inspection"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-15",
+    "sol": 15,
+    "choiceId": "A",
+    "label": "Daha geniş korunaklı alanı hizmette tut.",
+    "animations": [
+      {
+        "id": "shelter_prepare",
+        "variant": "full"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-15",
+    "sol": 15,
+    "choiceId": "B",
+    "label": "Daha küçük alanı kullan; su ve öğün erişimini geçici sınırla.",
+    "animations": [
+      {
+        "id": "section_shutdown",
+        "variant": "low_activity",
+        "location": "habitat"
+      },
+      {
+        "id": "crew_meal_rest",
+        "variant": "limited"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-16",
+    "sol": 16,
+    "choiceId": "A",
+    "label": "Modülü ayır ve yedek kapasiteye geç.",
+    "animations": [
+      {
+        "id": "battery_isolate"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-16",
+    "sol": 16,
+    "choiceId": "B",
+    "label": "Modülü ayrı test düzeninde tut; kalıcı çözümü ertele.",
+    "animations": [
+      {
+        "id": "system_check",
+        "variant": "quick"
+      },
+      {
+        "id": "maintenance_deferred",
+        "variant": "battery"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-17",
+    "sol": 17,
+    "choiceId": "A",
+    "label": "Ek rasyon ve dinlenmeyle tam bakım vardiyasını destekle.",
+    "animations": [
+      {
+        "id": "crew_meal_rest",
+        "variant": "extra"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-17",
+    "sol": 17,
+    "choiceId": "B",
+    "label": "Bakım vardiyasını küçült; bazı yaşam destek işlerini ertele.",
+    "animations": [
+      {
+        "id": "maintenance_deferred",
+        "variant": "air"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-18",
+    "sol": 18,
+    "choiceId": "A",
+    "label": "Koruma hazırlığı işlerine öncelik ver.",
+    "animations": [
+      {
+        "id": "alarm_test",
+        "variant": "existing"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-18",
+    "sol": 18,
+    "choiceId": "B",
+    "label": "Enerji ve yaşam destek hizmetlerini düşük faaliyet düzeninde yürüt.",
+    "animations": [
+      {
+        "id": "power_reroute",
+        "variant": "critical"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-19",
+    "sol": 19,
+    "choiceId": "A",
+    "label": "Üniteye bakım yap, işlev kontrolünü tamamla.",
+    "animations": [
+      {
+        "id": "filter_service",
+        "variant": "air"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-19",
+    "sol": 19,
+    "choiceId": "B",
+    "label": "Mevcut üniteyi izlemeyi sürdür; bakımı ertele.",
+    "animations": [
+      {
+        "id": "maintenance_deferred",
+        "variant": "air"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-20",
+    "sol": 20,
+    "choiceId": "A",
+    "label": "Test programına şimdi kaynak ayır.",
+    "animations": [
+      {
+        "id": "backup_module_connect",
+        "variant": "module"
+      },
+      {
+        "id": "system_check",
+        "variant": "full"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-20",
+    "sol": 20,
+    "choiceId": "B",
+    "label": "Mevcut güç ve yaşam destek düzeniyle devam et.",
+    "animations": [
+      {
+        "id": "continue_operation",
+        "variant": "normal",
+        "location": "utilities"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-21",
+    "sol": 21,
+    "choiceId": "A",
+    "label": "Koruma ekipmanı ve dış iş hazırlığına kaynak ayır.",
+    "animations": [
+      {
+        "id": "shelter_prepare",
+        "variant": "full"
+      },
+      {
+        "id": "external_inspection"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-21",
+    "sol": 21,
+    "choiceId": "B",
+    "label": "Daha dar yaşam alanında kal; dış işleri azalt.",
+    "animations": [
+      {
+        "id": "section_shutdown",
+        "variant": "low_activity",
+        "location": "habitat"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-22",
+    "sol": 22,
+    "choiceId": "A",
+    "label": "Panel grubunu bakım için ayır; sera programını kısalt.",
+    "animations": [
+      {
+        "id": "power_reroute",
+        "variant": "critical"
+      },
+      {
+        "id": "robot_panel_clean"
+      },
+      {
+        "id": "greenhouse_lighting",
+        "variant": "dim"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-22",
+    "sol": 22,
+    "choiceId": "B",
+    "label": "Sera aydınlatmasını koru; daha fazla batarya enerjisi kullan.",
+    "animations": [
+      {
+        "id": "greenhouse_lighting",
+        "variant": "keep"
+      },
+      {
+        "id": "power_reroute",
+        "variant": "greenhouse"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-23",
+    "sol": 23,
+    "choiceId": "A",
+    "label": "Dış bakım ekibini gönder ve bağlantıları kontrol et.",
+    "animations": [
+      {
+        "id": "external_inspection"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-23",
+    "sol": 23,
+    "choiceId": "B",
+    "label": "Bölümü kontrollü biçimde kapat; dış bakımı ertele.",
+    "animations": [
+      {
+        "id": "section_shutdown",
+        "variant": "close",
+        "location": "habitat"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-24",
+    "sol": 24,
+    "choiceId": "A",
+    "label": "Korunaklı bölümün hizmet kapasitesini koru.",
+    "animations": [
+      {
+        "id": "continue_operation",
+        "variant": "normal",
+        "location": "shelter"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-24",
+    "sol": 24,
+    "choiceId": "B",
+    "label": "Kullanılan alanı küçült; bazı hizmetleri kısıtla.",
+    "animations": [
+      {
+        "id": "section_shutdown",
+        "variant": "low_activity",
+        "location": "shelter"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-25",
+    "sol": 25,
+    "choiceId": "A",
+    "label": "Ek rasyon ve dinlenmeyle bakım ekibini destekle.",
+    "animations": [
+      {
+        "id": "crew_meal_rest",
+        "variant": "extra"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-25",
+    "sol": 25,
+    "choiceId": "B",
+    "label": "İş yükünü azalt; bazı koruma ve yaşam destek bakımlarını ertele.",
+    "animations": [
+      {
+        "id": "maintenance_deferred",
+        "variant": "air"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-26",
+    "sol": 26,
+    "choiceId": "A",
+    "label": "Koruma işlerinde mevcut ekipman payını kullan; yaşam destek bakımını azalt.",
+    "animations": [
+      {
+        "id": "alarm_test",
+        "variant": "existing"
+      },
+      {
+        "id": "maintenance_deferred",
+        "variant": "air"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-26",
+    "sol": 26,
+    "choiceId": "B",
+    "label": "Ek bakım enerjisi ayır; bazı gıda hazırlama işlerini ertele.",
+    "animations": [
+      {
+        "id": "system_check",
+        "variant": "full"
+      },
+      {
+        "id": "crew_meal_rest",
+        "variant": "limited"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-27",
+    "sol": 27,
+    "choiceId": "A",
+    "label": "Yedek tankı bağla, ana bağlantıyı kontrol et.",
+    "animations": [
+      {
+        "id": "backup_module_connect",
+        "variant": "tank"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-27",
+    "sol": 27,
+    "choiceId": "B",
+    "label": "Yedek bağlantıyı ertele; su kullanımını ve öğün hazırlamayı sınırla.",
+    "animations": [
+      {
+        "id": "crew_meal_rest",
+        "variant": "limited"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-28",
+    "sol": 28,
+    "choiceId": "A",
+    "label": "Korunaklı çalışma düzenini mevcut kaynaklarla sürdür.",
+    "animations": [
+      {
+        "id": "continue_operation",
+        "variant": "normal",
+        "location": "shelter"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-28",
+    "sol": 28,
+    "choiceId": "B",
+    "label": "Düşük faaliyet moduna geç; bazı yaşam ve gıda hizmetlerini sınırla.",
+    "animations": [
+      {
+        "id": "section_shutdown",
+        "variant": "low_activity",
+        "location": "habitat"
+      },
+      {
+        "id": "crew_meal_rest",
+        "variant": "limited"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-29",
+    "sol": 29,
+    "choiceId": "A",
+    "label": "Dış bağlantı ve erişim altyapısını hazırla.",
+    "animations": [
+      {
+        "id": "departure_prepare",
+        "variant": "external"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-29",
+    "sol": 29,
+    "choiceId": "B",
+    "label": "Ekibi hava kilidinde hazır tut; dış hazırlığı sınırlı yürüt.",
+    "animations": [
+      {
+        "id": "departure_prepare",
+        "variant": "airlock"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-30",
+    "sol": 30,
+    "choiceId": "A",
+    "label": "Planlı yük düzeniyle enerji yoğun hazırlığı tamamla.",
+    "animations": [
+      {
+        "id": "departure_prepare",
+        "variant": "external"
+      }
+    ]
+  },
+  {
+    "cardId": "sol-30",
+    "sol": 30,
+    "choiceId": "B",
+    "label": "Güvenli dönüş rezervini koruyarak gereksiz yükü üste bırak.",
+    "animations": [
+      {
+        "id": "departure_prepare",
+        "variant": "unload"
+      }
+    ]
+  }
+]
