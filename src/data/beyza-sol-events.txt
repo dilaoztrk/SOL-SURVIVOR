@@ -1,0 +1,479 @@
+🪐 FAZ 1 — KURULUM VE İLK SINAVLAR
+Sol 1–10 · 10 temel karar
+SOL 1 — ARES-7 Sistemlerini Devralma
+Durum:
+ARES-7 daha önce kurulmuş bir araştırma üssüdür. Görevi devralırken hava, su ve güç sensörlerini ayrıntılı kontrol edebilir veya mevcut ayarlarla çalışmaya başlayabilirsin.
+
+A — Tam sistem kontrolünü yap.
+- Energy −6
+- Kontrol odasında testler tamamlanır; doğrulanan sistemler işaretlenir.
+- İlerideki etkisi: Sol 4’te valf sorununa müdahale daha az yaşam destek rezervi harcatır.
+B — Mevcut ayarlarla başla; ayrıntılı kontrolü ertele.
+- Energy −2
+- Life Support −4
+- Radiation Shield −4
+- Üs çalışmaya başlar; tamamlanmamış kontrol maddeleri ekranda kalır.
+SOL 2 — Sığınak Envanteri
+Durum:
+Sığınağın su rezervleri, haberleşme cihazları ve izleme ekipmanının yeniden düzenlenmesi gerekiyor. Henüz acil bir tehlike bulunmuyor.
+
+A — Hazırlığı sonraki vardiyaya bırak.
+- Radiation Shield −6
+- Sığınaktaki eksik hazırlıklar görünür kalır.
+B — Bugünkü vardiyayı sığınağı hazırlamaya ayır.
+- Energy −5
+- Radiation Shield −2
+- Ekipman düzenlenir ve sistem kontrolleri yapılır.
+- İlerideki etkisi: Sol 16’daki güneş parçacıkları olayında Shield kaybı −8 yerine −5 olur.
+SOL 3 — Sera Aydınlatmasının Bakımı
+Durum:
+Serada görevden önce yetiştirilmeye başlanmış bitkiler bulunuyor. Aydınlatma sisteminin bakımı, yaklaşan hasatta kullanılabilir ürün miktarını artırabilir.
+
+A — Aydınlatma bakımını ve ayarını şimdi yap.
+- Energy −8
+- Gecikmeli etki — Sol 7: Food +14
+- Sera ekranına geçilir; armatürler kontrol edilir ve ışık dağılımı düzeltilir.
+B — Mevcut aydınlatmayla devam et.
+- Food −4
+- Daha düşük kullanılabilir ürün beklentisi, gıda rezervi hesabına yansır.
+SOL 4 — Oksijen Hattında Valf Kontrolü
+Durum:
+Sızdırmazlık testinde bir valfin bakım ihtiyacı görülüyor. Müdahale sırasında ilgili hattın kısa süreliğine ayrılması gerekiyor.
+
+A — Valfi değiştir ve hattı test et.
+- Energy −4
+- Life Support −6
+- Sol 1’de A seçildiyse: Life Support kaybı −6 yerine −3 olur.
+- Bakım alanında hat izole edilir, valf değiştirilir ve test yapılır.
+B — Geçici ayar yap; tam bakımı ertele.
+- Life Support −2
+- Gecikmeli etki — Sol 8: Life Support −12
+- Sol 1’de A seçildiyse: Gecikmeli kayıp −12 yerine −8 olur.
+- Geçici müdahale tamamlanır; tam bakım işi bekleyen görevlere eklenir.
+SOL 5 — Panel Temizliği Planı
+Durum:
+Güneş panellerindeki olağan toz birikimine karşı bakım zamanı geldi. Bu, henüz bir fırtına olayı değildir.
+
+A — Panel grubunu geçici ayırıp uzaktan temizlik yap.
+- Energy −7
+- Panel alanına geçilir; robotik temizlik sistemi çalıştırılır.
+- İlerideki etkisi: Temizlik düzeneği hazır kaldığı için Sol 11’deki fırtına sonrası temizlik Energy −5 yerine −3 harcar.
+B — Üretimi sürdür; dış bakım ekibiyle kontrollü temizlik yap.
+- Energy −1
+- Life Support −7
+- Dış ekip hazırlanır; temizlik sırasında mürettebatın dış görev hizmetleri yaşam destek rezervinden karşılanır.
+SOL 6 — Dış İşin Önceliği
+Durum:
+Planlı dış düzenleme işi ile sığınak hazırlığı aynı vardiyaya denk geliyor. Mürettebat iki işi de tam kapasiteyle tamamlayamıyor.
+
+A — Dış işi ertele; ekibi sığınak hazırlığına ayır.
+- Food −4
+- Radiation Shield −3
+- Sığınakta hazırlık ilerler; dış iş beklemeye alınır.
+B — Dış işi yap; sığınak hazırlığını sınırlı bırak.
+- Radiation Shield −8
+- Dış ekipman alanına geçilir; sığınağın ertelenen hazırlıkları işaretlenir.
+SOL 7 — Su Geri Kazanım Filtresi
+Durum:
+Su işleme hattının filtre bakım zamanı geliyor. Yeni filtrenin kurulumu ve doğrulama testleri birkaç sol sürecek.
+
+A — Yeni filtreyi tak ve doğrulama testlerini başlat.
+- Energy −7
+- Food −3
+- Gecikmeli etki — Sol 11: Life Support +16
+- Su modülünde filtre değiştirilir ve test süreci başlatılır.
+B — Mevcut filtreye geçici bakım yap.
+- Life Support −3
+- Gecikmeli etki — Sol 11: Life Support −9, Food −4
+- Geçici bakım yapılır; beklenen kapasite kaybı görev takviminde gösterilir.
+⚠️ BEKLENMEDİK OLAY 1 — BÜYÜK TOZ FIRTINASI
+Sol 8’de başlar, Sol 10 sonuna kadar sürer.
+
+Sahne:
+Gökyüzü kararır. Görüş azalır, panel üretimi düşer ve üs enerji tasarrufuna geçer. Sera aydınlatmasının kısılması, hasada yakın ürünlerin bir bölümünü kullanılmaz hâle getirir.
+
+Kaynak etkileri:
+- Sol 8: Energy −2, Food −3
+- Sol 9: Energy −2
+- Sol 10: Energy −2
+- Toplam fırtına etkisi: Energy −6, Food −3
+Food kaybı bir kez uygulanır. Bu kayıp, kapalı gıda depolarına kum girmesinden değil, sera üretiminin aksamasından kaynaklanır.
+
+Yandan açılan bilim kutusu:
+Gerçek Mars kaydı — Opportunity, 2018
+Opportunity, gezegeni kaplayan toz fırtınasında güneş enerjisi kaybetti. Araçtan alınan son iletişim 10 Haziran 2018 tarihindeydi. ARES-7’nin sera kaybı ve oyun puanları bu kayıttan esinlenen senaryo uyarlamasıdır.
+
+Kaynak: NASA — Opportunity
+SOL 8 — Rasyon ve Bakım Vardiyası
+Durum:
+Fırtına sırasında da gerekli üs bakımları devam ediyor. Ek bakım vardiyası öncesinde mürettebat için dinlenme ve ek öğün planlanabilir.
+
+A — Ek rasyonla dinlenme arası ver; sonraki bakım vardiyasını koru.
+- Food −7
+- Yaşam alanında öğün ve dinlenme düzenlenir; bakım takvimi korunur.
+B — Ek rasyon ayırma; bakım programını daha sınırlı yürüt.
+- Life Support −5
+- Bazı yaşam destek bakım işleri ertelenir.
+Hatırlatma: Bu kartın etkilerine ek olarak, o solun fırtına etkisi ve varsa Sol 4’ten gelen gecikmeli etki uygulanır.
+SOL 9 — Korunaklı Çalışma Planı
+Durum:
+Fırtına devam ederken günlük işler korunaklı alan içinde yeniden düzenlenebilir.
+
+A — Enerji ayırıp korunaklı çalışma düzenini kur.
+- Energy −5
+- Radiation Shield −3
+- Korunaklı alandaki izleme ve çalışma ekipmanları hazırlanır.
+B — Hazırlığı sınırlı tut; mevcut düzenle devam et.
+- Radiation Shield −10
+- Koruma hazırlığındaki eksikler görünür kalır.
+SOL 10 — Acil Durum Alarm Testi
+Durum:
+Üs içi alarm ve haberleşme hattının kabul testi planlanıyor. Test tamamlandığında sığınak koordinasyon hazırlığı iyileşecek.
+
+A — Yedek alarm hattını kur ve test programını başlat.
+- Energy −6
+- Life Support −2
+- Gecikmeli etki — Sol 14: Radiation Shield +12
+- Kontrol odası ve sığınak arasındaki alarm bağlantıları sırayla test edilir.
+B — Mevcut hatla çalışmayı sürdür.
+- Life Support −4
+- Radiation Shield −3
+- Yedek bağlantı hazırlığı beklemeye alınır.
+🌪️ FAZ 2 — KAYNAK BASKISI VE GECİKMELİ SONUÇLAR
+Sol 11–20 · 10 orta karar
+🧹 FIRTINANIN DEVAMI — TOZLU PANELLER
+Sol 11’de, günlük karttan önce açılan müdahale sahnesi.
+
+Durum:
+Atmosferdeki fırtına hafiflemiştir; ancak ana güneş panellerinin yüzeyinde toz kalmıştır. Gökyüzünün açılması tek başına üretimi tamamen düzeltmez.
+
+Müdahale — Ana panelleri temizle.
+- Energy −5
+- Sol 5’te A seçildiyse: Energy −3
+- Panel alanına geçilir ve temizlik animasyonu oynar.
+- Yüzey tozundan kaynaklanan günlük enerji kaybı durur.
+Müdahaleyi ertele.
+- O anda temizlik enerjisi harcanmaz.
+- Temizlenmediği her sol Energy −2 uygulanır.
+- Hiç temizlenmezse bu kayıp Sol 11–18 boyunca, toplam Energy −16 olur.
+- Sol 19’daki rüzgâr kalan yüzey tozunu kaldırır.
+Önemli: Temizlik, geçmiş fırtınanın enerji kaybını geri vermez; yalnızca sonraki üretim kaybını durdurur.
+SOL 11 — Sığınak Hizmetlerinin Paylaşılması
+Durum:
+Sığınak bölümünün havalandırma ve güç testleri, günlük üs işleriyle aynı kaynakları kullanacak.
+
+A — Korunaklı alanda kapsamlı test yap.
+- Energy −7
+- Radiation Shield −3
+- Sığınak hizmetleri test moduna alınır ve ölçümler izlenir.
+B — Kısmi test yap; yaşam destek bakımını da sınırla.
+- Life Support −3
+- Radiation Shield −8
+- Bazı kontrol adımları ertelenir.
+SOL 12 — Sera Isıtma Hattı
+Durum:
+Sera ısıtma hattının bakımı gerekiyor. İşlem için enerji ve kısa süreli üretim kısıtı gerekli.
+
+A — Isıtma hattının bakımını şimdi tamamla.
+- Energy −6
+- Food −3
+- Seranın ilgili bölümü kısa süreliğine izole edilir ve ısıtma kontrolü yapılır.
+B — Mevcut hatla devam et; bakımı sonraya bırak.
+- Food −3
+- Gecikmeli etki — Sol 15: Food −12
+- Isıtma performansının düşmesi, ileride ek ürün kaybına yol açar.
+SOL 13 — Su ve Gıda Hazırlama Modülü
+Durum:
+Üste bulunan yedek su işleme ve gıda hazırlama modülü henüz kullanıma hazır değildir. Testler tamamlanırsa kullanılabilir su hizmetleri ve hazırlanabilir öğün rezervi toparlanacak.
+
+A — Yedek modülün kurulum ve kabul testlerini başlat.
+- Energy −9
+- Life Support −3
+- Gecikmeli etki — Sol 17: Food +10, Life Support +12
+- Yedek modül bağlanır ve devreye alma takvimi açılır.
+B — Ana hat ve mevcut hazır gıda rezerviyle devam et.
+- Food −5
+- Yedek modül kapalı kalır; ana sistemin iş yükü sürer.
+SOL 14 — Toza Karşı Bakım Bütçesi
+Durum:
+Fırtınanın ardından dış ekipmanların bağlantı ve hareketli parçaları için önleyici bakım gerekiyor. Bu kart yeni bir fırtına başlatmaz.
+
+A — Enerjiyi kritik hizmetlere ve uzaktan bakıma ayır.
+- Energy −5
+- Life Support −3
+- Kritik hizmetler önceliklendirilir; dış ekipman robotik olarak incelenir.
+B — Sera faaliyetini koru; daha fazla dış ekip çalışması planla.
+- Energy −1
+- Life Support −5
+- Radiation Shield −5
+- Sera çalışmayı sürdürür; dış görev hazırlığı ek hizmet rezervi kullanır.
+SOL 15 — Kullanılacak Yaşam Alanı
+Durum:
+Korunaklı bölümün hizmetleri ile ana yaşam alanının ihtiyaçları arasında kaynak paylaşımı yapılması gerekiyor.
+
+A — Daha geniş korunaklı alanı hizmette tut.
+- Energy −4
+- Radiation Shield −6
+- Geniş bölümün havalandırma, izleme ve koruma hizmetleri çalışmayı sürdürür.
+B — Daha küçük alanı kullan; su ve öğün hizmetlerini geçici sınırla.
+- Food −4
+- Life Support −6
+- Kullanılmayan bölüm kapatılır; mürettebat küçük alana geçer.
+☀️ BEKLENMEDİK OLAY 2 — MARS’A ULAŞAN GÜNEŞ PARÇACIKLARI
+Sol 16’da, günlük karttan önce gerçekleşir.
+
+Sahne:
+Radyasyon uyarısı devreye girer. Dış görevler durdurulur, mürettebat korunaklı bölüme geçer ve üs ekranlarında kırmızı alarm görünür.
+
+Kaynak etkisi:
+- Radiation Shield −8
+- Sol 2’de B seçildiyse: Radiation Shield −5
+Bu kayıp, koruma hazırlığı ve kullanılabilir güvenlik rezervinin azalmasını temsil eder. Radyasyonun duvarları fiziksel olarak tükettiği anlamına gelmez.
+
+Yandan açılan bilim kutusu:
+Gerçek Mars kaydı — Curiosity, 20 Mayıs 2024
+Curiosity’nin RAD cihazı, Mars yüzeyine ulaşan güneş parçacıkları sırasında radyasyon artışı ölçtü. Oyundaki Shield puanı bir radyasyon dozu değildir. DONKI kaydından doğrudan Mars yüzey dozu hesaplanmaz.
+
+Kaynak: NASA/JPL — Mars’taki güneş fırtınası
+SOL 16 — Batarya Modülünün Durumu
+Durum:
+Bir batarya modülünün rutin ölçümleri ayrıntılı inceleme gerektiriyor. Modül izole ediliyor; kalıcı çözüm için kaynak ayırmak gerekiyor.
+
+A — Modülü ayır ve yedek kapasiteye geç.
+- Energy −9
+- Enerji bölümünde yedek kapasite devreye alınır; kullanılabilir rezerv azalır.
+B — Modülü ayrı test düzeninde tut; kalıcı çözümü ertele.
+- Anlık kaynak değişimi: 0
+- Gecikmeli etki — Sol 19: Energy −14, Radiation Shield −5
+- Sonraki müdahale ve hizmet kısıtı görev takviminde gösterilir.
+SOL 17 — Mürettebat ve Bakım Kapasitesi
+Durum:
+Yoğun görev programı nedeniyle mürettebat her bakım işini aynı vardiyada tamamlayamıyor.
+
+A — Ek rasyon ve dinlenmeyle tam bakım vardiyasını destekle.
+- Energy −1
+- Food −8
+- Öğün ve vardiya planı güncellenir; bakım programı korunur.
+B — Bakım vardiyasını küçült; bazı yaşam destek işlerini ertele.
+- Life Support −9
+- Ertelenen yaşam destek kontrolleri sistem ekranında işaretlenir.
+SOL 18 — Koruma Ekipmanının Önceliği
+Durum:
+Korunaklı alanın izleme, haberleşme ve hizmet ekipmanına ayrılabilecek bakım kapasitesi sınırlı.
+
+A — Koruma hazırlığı işlerine öncelik ver.
+- Radiation Shield −10
+- Kontroller sırasında mevcut koruma ekipmanı ve hazırlık rezervi kullanılır.
+B — Enerji ve yaşam destek hizmetlerini düşük faaliyet düzeninde yürüt.
+- Energy −4
+- Life Support −5
+- Üs hizmetlerinin çalışma düzeni değiştirilir; bazı işler sınırlandırılır.
+🌬️ OLUMLU SÜRPRİZ — RÜZGÂRLA PANEL TEMİZLENMESİ
+Sol 19’da, günlük karttan önce gerçekleşir.
+
+Sahne:
+Rüzgâr, yardımcı güneş paneli dizisindeki artık tozu kaldırır. Ana paneller temizlenmemişse onların üzerindeki birikim de azalır ve üretim toparlanır.
+
+Kaynak etkisi:
+- Bir kez Energy +4
+- Temizlenmemiş panellerden gelen günlük Energy −2 kaybı sona erer.
+- +4 her sol tekrarlanmaz.
+Manuel temizlik ana panel dizisini temizlerken bu olumlu olay, erişilemeyen yardımcı panel dizisindeki tozu da kaldırır. Böylece aynı temizliğe iki kez ödül verilmez.
+
+Yandan açılan bilim kutusu:
+Gerçek Mars kaydı — Spirit, Mart 2005
+Spirit’in güneş panellerindeki tozun rüzgârla temizlenmesi, enerji üretimini artırdı. Oyundaki +4 puan, bu ölçümün doğrudan sayısal karşılığı değildir.
+
+Kaynak: NASA — Spirit
+SOL 19 — Karbondioksit Temizleme Ünitesi
+Durum:
+Hava işleme ünitesinin periyodik bakım aralığı doluyor. Sistemi planlı olarak ayırmak enerji ve yaşam destek rezervi gerektiriyor.
+
+A — Üniteye bakım yap ve işlev kontrolünü tamamla.
+- Energy −5
+- Life Support −3
+- Hava işleme bölümünde bakım yapılır ve sistem yeniden test edilir.
+B — Mevcut üniteyi izlemeyi sürdür; bakımı ertele.
+- Life Support −2
+- Gecikmeli etki — Sol 22: Life Support −8
+- Gecikmeli kapasite kaybı görev takviminde gösterilir.
+SOL 20 — Yedek Sistemleri Devreye Alma
+Durum:
+Görevin son dönemi için yedek güç ve su hizmetlerinin birlikte kabul testine alınması öneriliyor.
+
+A — Test programına şimdi kaynak ayır.
+- Energy −7
+- Radiation Shield −3
+- Gecikmeli etki — Sol 25: Energy +12, Life Support +8
+- Yedek sistemler testleri tamamlandığında kullanılabilir hâle gelir.
+B — Mevcut güç ve yaşam destek düzeniyle devam et.
+- Life Support −5
+- Radiation Shield −4
+- Yedek sistemler beklemede kalır; ana sistemlerin yükü sürer.
+🔥 FAZ 3 — SON HAFTA VE AYRILIŞ
+Sol 21–30 · 10 zor karar
+☄️ BİLGİLENDİRME SAHNESİ — MARS’TA METEOROİD ÇARPMASI
+Sol 21’de, günlük karttan önce gösterilir.
+
+Sahne:
+Görev kontrol ekranında bir arşiv gözlemi açılır. Mars yüzeyindeki krater görüntüsü ve ilgili sismik kayıt gösterilir.
+
+Bu sahne, üssün yakınına yeni bir meteoroid düştüğü anlamına gelmez. Mürettebat gerçek bir Mars olayını öğrenir.
+
+Kaynak etkisi:
+- Energy 0
+- Food 0
+- Life Support 0
+- Radiation Shield 0
+- Onarım veya müdahale gerekmez.
+Yandan açılan bilim kutusu:
+Gerçek Mars kaydı — 24 Aralık 2021
+Mars’a çarpan bir meteoroidin oluşturduğu olay, InSight’ın sismik kayıtları ve Mars Reconnaissance Orbiter görüntüleriyle araştırıldı. Sonuçlar 27 Ekim 2022’de yayımlandı.
+
+Kaynak: NASA — InSight ve meteoroid çarpması
+SOL 21 — Son Dönem Koruma Planı
+Durum:
+Kalan sollar için dış bakım programı ile korunaklı yaşam düzeni birlikte planlanıyor.
+
+A — Koruma ekipmanı ve dış iş hazırlığına kaynak ayır.
+- Energy −2
+- Radiation Shield −10
+- Koruma ekipmanı hazırlanır ve dış görev kontrol listeleri tamamlanır.
+B — Daha dar yaşam alanında kal; dış işleri azalt.
+- Food −5
+- Life Support −7
+- Mürettebat küçük yaşam alanına geçer; dış görevler azaltılır.
+SOL 22 — Panel ve Sera Bütçesi
+Durum:
+Panel bakımına ayrılacak enerji ile mevcut bitkilerin aydınlatma ihtiyacı aynı rezervden karşılanıyor.
+
+A — Panel grubunu bakım için ayır; sera ışık programını kısalt.
+- Energy −8
+- Food −3
+- Panel alanında bakım yapılır; sera ışıkları daha kısa süre çalışır.
+B — Sera aydınlatmasını koru; daha fazla batarya enerjisi kullan.
+- Energy −11
+- Sera ışıkları açık kalır; enerji rezervi daha hızlı azalır.
+🌋 BEKLENMEDİK OLAY 3 — MARS DEPREMİ
+Sol 23’te, günlük karttan önce gerçekleşir.
+
+Sahne:
+Üs kısa süreliğine sarsılır. Bir yaşam destek yardımcı hattı güvenlik amacıyla izole edilir. Korunaklı bölümdeki bazı bağlantılar kontrol bekler.
+
+Oyuncu uyarı ekranından ilgili bakım alanını seçer ve o bölgeye geçer.
+
+Olayın ilk etkisi:
+- Life Support −3
+- Radiation Shield −4
+Müdahale — Bağlantıları onar ve sistem testini tamamla.
+- Energy −4
+- Onarım tamamlandığında Radiation Shield +4
+- Olay sırasında kullanılan Life Support −3 geri gelmez.
+- Ek günlük kayıp durur.
+Müdahaleyi ertele.
+- O anda onarım enerjisi harcanmaz.
+- Shield kaybı devam eder.
+- Sol 23 dâhil, onarım yapılmadığı her sol Life Support −1 uygulanır.
+Yandan açılan bilim kutusu:
+Gerçek Mars kaydı — InSight, 4 Mayıs 2022
+InSight, Mars’ta güçlü bir deprem kaydetti. ARES-7’deki bağlantı ve yardımcı ekipman hasarı, bu kayıttan esinlenen varsayımsal oyun senaryosudur. NASA’nın gözlemlediği bir insan üssü hasarı değildir.
+
+Kaynak: NASA — InSight’ın büyük Mars depremi kaydı
+SOL 23 — Dış Bağlantıların Bakımı
+Durum:
+Deprem müdahalesinin ardından günlük programdaki dış bağlantı bakımı da bekliyor. Bu iş, depremde izole edilen iç yardımcı hattın onarımından ayrıdır.
+
+A — Dış bakım ekibini gönder ve bağlantıları kontrol et.
+- Energy −6
+- Radiation Shield −5
+- Dış bağlantı alanına geçilir ve planlı bakım gerçekleştirilir.
+B — İlgili bölümü kontrollü kapat; dış bakımı ertele.
+- Food −4
+- Life Support −8
+- Bölümün hizmetleri kapatılır; kullanılabilir alan ve hizmet kapasitesi azalır.
+SOL 24 — Korunaklı Bölümün İşletilmesi
+Durum:
+Korunaklı bölümün işletimi ile ana yaşam alanının hizmetleri arasında kaynak paylaşımı gerekiyor.
+
+A — Korunaklı bölümün hizmet kapasitesini koru.
+- Energy −3
+- Radiation Shield −10
+- Sığınak hizmetleri çalışmayı sürdürür; ekipman ve hazırlık rezervi kullanılır.
+B — Kullanılan alanı küçült; bazı hizmetleri kısıtla.
+- Life Support −9
+- Radiation Shield −4
+- Kullanılmayan bölümler kapanır ve mürettebatın yaşam alanı yeniden düzenlenir.
+SOL 25 — Son Hafta Görev Yükü
+Durum:
+Kalan bakım işleri için ekip ve öğün planını yeniden düzenlemek gerekiyor.
+
+A — Ek rasyon ve dinlenmeyle bakım ekibini destekle.
+- Energy −2
+- Food −9
+- Öğün ve vardiya planı güncellenir; bakım programı korunur.
+B — İş yükünü azalt; bazı koruma ve yaşam destek bakımlarını ertele.
+- Life Support −7
+- Radiation Shield −4
+- Ertelenen işler sistem ekranında işaretlenir.
+SOL 26 — Koruma Bakımı mı, Gıda Hazırlığı mı?
+Durum:
+Bugünkü çalışma aralığı hem koruma ekipmanına hem gıda hazırlama faaliyetlerine yetmiyor.
+
+A — Koruma işlerinde mevcut ekipman rezervini kullan; yaşam destek bakımını azalt.
+- Life Support −3
+- Radiation Shield −9
+- Koruma ekipmanı kullanılır; bazı yaşam destek işleri ertelenir.
+B — Ek bakım enerjisi ayır; bazı gıda hazırlama işlerini ertele.
+- Energy −7
+- Food −5
+- Bakım sahnesi açılır; hazırlanmayı bekleyen öğünler kullanılabilir gıda hesabından ayrılır.
+SOL 27 — Su Tankı Bağlantısının Kontrolü
+Durum:
+Tank hattının test ve bakımında su hizmetlerinin geçici olarak yeniden düzenlenmesi gerekiyor.
+
+A — Yedek tankı bağla ve ana bağlantıyı kontrol et.
+- Energy −4
+- Life Support −7
+- Su bölümünde yedek tank devreye alınır ve bağlantı testi yapılır.
+B — Yedek bağlantıyı ertele; su kullanımını ve öğün hazırlamayı sınırla.
+- Food −8
+- Life Support −4
+- Su kullanım sınırları ve hazırlanabilir öğün miktarı güncellenir.
+SOL 28 — Görev Sonuna Kadar Çalışma Düzeni
+Durum:
+Mürettebat, kalan kritik hizmetleri korunaklı çalışma düzeniyle veya düşük faaliyet moduyla sürdürebilir.
+
+A — Korunaklı çalışma düzenini mevcut kaynaklarla sürdür.
+- Energy −2
+- Radiation Shield −12
+- Korunaklı bölümdeki hizmetler çalışmaya devam eder; kalan hazırlık rezervi kullanılır.
+B — Düşük faaliyet moduna geç; bazı yaşam ve gıda hizmetlerini sınırla.
+- Food −6
+- Life Support −9
+- Önemsiz ekipman kapanır; kullanılan yaşam ve gıda hazırlama alanları daralır.
+SOL 29 — Planlı Ayrılışa Hazırlık
+Durum:
+Görevden önce üste yerleştirilmiş dönüş aracı için son hazırlıklar yapılacak.
+
+A — Dış bağlantı ve erişim altyapısını hazırla.
+- Energy −7
+- Radiation Shield −4
+- Dönüş aracına erişim güzergâhı ve bağlantıları kontrol edilir.
+B — Ekibi hava kilidinde hazır tut; dış hazırlığı sınırlı yürüt.
+- Food −4
+- Life Support −8
+- Mürettebat hava kilidinde hazırlanır; geçici hizmet düzeni kaynak tüketir.
+SOL 30 — Son Yük ve Hizmet Kararı
+Durum:
+Dönüş aracının önceden doğrulanmış güvenli sınırları içinde son yük ve hizmet planı seçilecek. Mürettebatın güvenli dönüşü için gerekli rezervler korunur.
+
+A — Planlı yük düzeniyle enerji yoğun hazırlığı tamamla.
+- Energy −8
+- Radiation Shield −4
+- Araç hazırlığı ve son görev kontrol listesi tamamlanır.
+B — Gereksiz yükü üste bırak; son hizmet planını küçült.
+- Food −8
+- Life Support −5
+- Görev dışı yük ve üste bırakılan kullanılabilir rezervler üs hesabından çıkarılır; zorunlu dönüş rezervleri korunur.
+Son kontrol:
+Kart etkisinden ve günlük Food −1 tüketiminden sonra bütün barlar 0’ın üzerindeyse görev başarıyla tamamlanır.

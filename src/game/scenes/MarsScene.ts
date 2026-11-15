@@ -1,0 +1,395 @@
+import Phaser from "phaser";
+
+export type MarsInteraction = "greenhouse";
+
+export type GreenhouseEffect = "harvest" | "maintenance" | "upgrade";
+export type ScenarioVisual = "dustStorm" | "panelIntervention" | "solarParticles" | "windCleaning" | "archive" | "quake";
+export type ScenarioAction = "panelClean" | "quakeRepair";
+type MarsSceneOptions = { onInteract: (interaction: MarsInteraction) => void };
+
+
+type Player = Phaser.GameObjects.Container & {
+  bodyGraphics: Phaser.GameObjects.Graphics;
+  leftLeg: Phaser.GameObjects.Graphics;
+  rightLeg: Phaser.GameObjects.Graphics;
+  leftArm: Phaser.GameObjects.Graphics;
+  rightArm: Phaser.GameObjects.Graphics;
+};
+
+export default class MarsScene extends Phaser.Scene {
+  private readonly options: MarsSceneOptions;
+  private readonly pressedKeys = new Set<string>();
+  private player!: Player;
+  private prompt!: Phaser.GameObjects.Text;
+  private controlHint!: Phaser.GameObjects.Text;
+  private scenery!: Phaser.GameObjects.Container;
+  private greenhouseGlass!: Phaser.GameObjects.Graphics;
+  private controlsEnabled = true;
+  private solarPanelDust!: Phaser.GameObjects.Graphics;
+  private scenarioVisuals: Phaser.GameObjects.Container | null = null;
+  private activeScenarioToken: string | null = null;
+  private activeScenarioVisual: ScenarioVisual | null = null;
+  private lastScenarioActionToken: string | null = null;
+  private readonly playerRadius = 16;
+
+  constructor(options: MarsSceneOptions) {
+    super("MarsScene");
+    this.options = options;
+  }
+
+  create() {
+    this.scenery = this.add.container(0, 0);
+    this.drawLandscape();
+    this.drawBase();
+    this.drawGreenhouse();
+    this.drawSolarPanels();
+
+    this.player = this.createAstronaut(290, 300) as Player;
+    this.scenery.add(this.player);
+
+    this.controlHint = this.add.text(884, 16, "WASD / Y\u00f6n Tu\u015flar\u0131: Hareket | E: Etkile\u015fim", {
+      fontFamily: "Arial, sans-serif",
+      fontSize: "12px",
+      color: "#fff1df",
+      backgroundColor: "#30251ee8",
+      padding: { x: 10, y: 7 },
+    }).setOrigin(1, 0);
+
+    this.prompt = this.add
+      .text(450, 365, "E \u2014 Sera ile Etkile\u015fim", {
+        fontFamily: "Arial, sans-serif",
+        fontSize: "14px",
+        color: "#fff1df",
+        backgroundColor: "#30251ee8",
+        padding: { x: 12, y: 8 },
+      })
+      .setOrigin(0.5)
+      .setVisible(false);
+
+    const canvas = this.game.canvas;
+    canvas.tabIndex = 0;
+    canvas.setAttribute("aria-label", "Mars sahnesi. WASD veya y\u00f6n tu\u015flar\u0131yla hareket et.");
+    canvas.addEventListener("pointerdown", this.focusCanvas);
+    canvas.addEventListener("keydown", this.handleKeyDown);
+    canvas.addEventListener("keyup", this.handleKeyUp);
+    canvas.addEventListener("blur", this.clearPressedKeys);
+    window.addEventListener("blur", this.clearPressedKeys);
+    this.scale.on(Phaser.Scale.Events.RESIZE, this.resizeScene, this);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, this.cleanup, this);
+    this.resizeScene({ width: this.scale.width, height: this.scale.height } as Phaser.Structs.Size);
+  }
+
+  update(_time: number, delta: number) {
+    if (!this.player) return;
+    if (!this.controlsEnabled || document.activeElement !== this.game.canvas) {
+      this.clearPressedKeys();
+      this.animateAstronaut(false, 0, _time);
+      return;
+    }
+
+    const left = this.pressedKeys.has("a") || this.pressedKeys.has("arrowleft");
+    const right = this.pressedKeys.has("d") || this.pressedKeys.has("arrowright");
+    const up = this.pressedKeys.has("w") || this.pressedKeys.has("arrowup");
+    const down = this.pressedKeys.has("s") || this.pressedKeys.has("arrowdown");
+    let dx = Number(right) - Number(left);
+    let dy = Number(down) - Number(up);
+    const moving = dx !== 0 || dy !== 0;
+
+    if (moving) {
+      const length = Math.hypot(dx, dy);
+      dx /= length;
+      dy /= length;
+      const bounds = this.getWorldBounds();
+      const speed = 190 * (delta / 1000);
+      this.player.x = Phaser.Math.Clamp(this.player.x + dx * speed, bounds.left, bounds.right);
+      this.player.y = Phaser.Math.Clamp(this.player.y + dy * speed, bounds.top, bounds.bottom);
+      this.animateAstronaut(true, length, _time);
+    } else {
+      this.animateAstronaut(false, 0, _time);
+    }
+
+    const nearGreenhouse = Phaser.Math.Distance.Between(this.player.x, this.player.y, 665, 214) < 100;
+    this.prompt.setVisible(nearGreenhouse);
+    this.prompt.setPosition(450, 365);
+    this.controlHint.setPosition(this.scale.width - 16, 16);
+  }
+
+  private drawLandscape() {
+    const g = this.add.graphics();
+    g.fillGradientStyle(0x542f2c, 0x542f2c, 0x9d513b, 0x9d513b, 1);
+    g.fillRect(0, 0, 900, 440);
+    g.fillStyle(0xc26949, 1);
+    g.fillEllipse(765, 92, 82, 82);
+    g.fillStyle(0xe6a270, 0.28);
+    g.fillEllipse(765, 92, 106, 106);
+    g.fillStyle(0x472d2b, 1);
+    g.fillPoints([[0, 242], [140, 160], [275, 242], [420, 174], [570, 252], [740, 175], [900, 248], [900, 440], [0, 440]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
+    g.fillStyle(0x7c3d31, 1);
+    g.fillPoints([[0, 305], [180, 252], [330, 315], [500, 260], [690, 318], [900, 270], [900, 440], [0, 440]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
+    g.fillStyle(0xb36042, 1);
+    g.fillRect(0, 320, 900, 120);
+    g.fillStyle(0xe29a65, 0.22);
+    for (let i = 0; i < 38; i++) g.fillCircle((i * 137) % 900, 330 + ((i * 71) % 100), 1 + (i % 3));
+    this.scenery.add(g);
+  }
+
+  private drawBase() {
+    const g = this.add.graphics();
+    g.fillStyle(0x272b2c, 1);
+    g.fillRoundedRect(90, 209, 188, 92, 8);
+    g.fillStyle(0x92918b, 1);
+    g.fillRoundedRect(105, 194, 158, 70, 8);
+    g.fillStyle(0x4e5c60, 1);
+    g.fillRoundedRect(120, 210, 45, 37, 4);
+    g.fillRoundedRect(174, 210, 73, 37, 4);
+    g.lineStyle(3, 0xd7a56e, 0.9);
+    g.strokeRoundedRect(90, 194, 188, 107, 8);
+    g.fillStyle(0x25292a, 1);
+    g.fillRect(65, 295, 240, 11);
+    this.scenery.add(g);
+    this.scenery.add(this.add.text(184, 182, "ARES-7", { fontFamily: "Arial", fontSize: "12px", color: "#f3d5b6", fontStyle: "bold" }).setOrigin(0.5));
+  }
+
+  private drawGreenhouse() {
+    const g = this.add.graphics();
+    g.fillStyle(0x202728, 0.95);
+    g.fillRoundedRect(602, 192, 142, 113, 12);
+    this.scenery.add(g);
+    this.greenhouseGlass = this.add.graphics();
+    this.greenhouseGlass.fillStyle(0x73928a, 0.62);
+    this.greenhouseGlass.fillRoundedRect(614, 204, 118, 86, 8);
+    this.scenery.add(this.greenhouseGlass);
+
+    const details = this.add.graphics();
+    details.lineStyle(4, 0xd7a56e, 1);
+    details.strokeRoundedRect(602, 192, 142, 113, 12);
+    details.lineBetween(673, 204, 673, 290);
+    details.lineBetween(614, 248, 732, 248);
+    details.fillStyle(0x5f8d58, 1);
+    for (const x of [630, 650, 696, 716]) {
+      details.fillRoundedRect(x - 6, 260, 12, 20, 5);
+      details.lineStyle(2, 0x9bbd73, 1);
+      details.lineBetween(x, 261, x - 5, 251);
+      details.lineBetween(x, 261, x + 5, 252);
+    }
+    this.scenery.add(details);
+    this.scenery.add(this.add.text(673, 180, "SERA", { fontFamily: "Arial", fontSize: "12px", color: "#fff1df", fontStyle: "bold" }).setOrigin(0.5));
+  }
+
+
+  private drawSolarPanels() {
+    const frames = this.add.graphics();
+    frames.fillStyle(0x252a30, 1);
+    frames.fillPoints([[382, 245], [465, 245], [477, 287], [394, 287]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
+    frames.fillPoints([[482, 245], [565, 245], [577, 287], [494, 287]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
+    frames.fillStyle(0x45616d, 1);
+    frames.fillPoints([[388, 250], [460, 250], [469, 281], [397, 281]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
+    frames.fillPoints([[488, 250], [560, 250], [569, 281], [497, 281]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
+    frames.lineStyle(2, 0xd2a16e, 1);
+    frames.strokePoints([[382, 245], [465, 245], [477, 287], [394, 287]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
+    frames.strokePoints([[482, 245], [565, 245], [577, 287], [494, 287]].map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
+    frames.lineStyle(1, 0x93a5a7, 0.75);
+    for (const x of [414, 438, 512, 536]) frames.lineBetween(x, 248, x + 8, 284);
+    this.scenery.add(frames);
+    this.solarPanelDust = this.add.graphics();
+    this.solarPanelDust.fillStyle(0xd4a36f, 0.8);
+    for (let i = 0; i < 28; i++) this.solarPanelDust.fillCircle(390 + (i * 29) % 178, 250 + (i * 17) % 32, 1 + i % 2);
+    this.scenery.add(this.solarPanelDust);
+  }
+
+  setSpecialEvent(type: ScenarioVisual | null, token: string | null) {
+    if (type === this.activeScenarioVisual && token === this.activeScenarioToken) return;
+    this.clearScenarioVisuals();
+    this.activeScenarioVisual = type;
+    this.activeScenarioToken = token;
+    if (!type || !token) return;
+    if (type === "windCleaning") {
+      this.clearSolarPanelDust();
+      return;
+    }
+    if (type === "quake") {
+      this.cameras.main.shake(360, 0.006);
+      return;
+    }
+    if (type === "archive" || type === "panelIntervention") return;
+
+    this.scenarioVisuals = this.add.container(0, 0);
+    if (type === "dustStorm") {
+      const haze = this.add.graphics();
+      haze.fillStyle(0x342a2a, 0.25);
+      haze.fillRect(0, 0, 900, 440);
+      this.scenarioVisuals.add(haze);
+      for (let i = 0; i < 28; i++) {
+        const dust = this.add.ellipse((i * 83) % 900, 30 + (i * 47) % 390, 8 + i % 9, 2 + i % 3, 0xe3ae79, 0.45);
+        this.scenarioVisuals.add(dust);
+        this.tweens.add({ targets: dust, x: dust.x + 250 + i % 140, y: dust.y + 14, duration: 2400 + i * 90, repeat: -1, yoyo: true, ease: "Sine.InOut" });
+      }
+    } else if (type === "solarParticles") {
+      const alarm = this.add.text(450, 70, "RADYASYON UYARISI", { fontFamily: "Arial", fontSize: "15px", fontStyle: "bold", color: "#ffd3c7", backgroundColor: "#6f302ee8", padding: { x: 14, y: 9 } }).setOrigin(0.5);
+      this.scenarioVisuals.add(alarm);
+      this.tweens.add({ targets: alarm, alpha: 0.35, duration: 650, yoyo: true, repeat: 4 });
+      const warning = this.add.graphics();
+      warning.lineStyle(3, 0xe77b66, 0.65);
+      warning.strokeRoundedRect(7, 7, 886, 426, 15);
+      this.scenarioVisuals.add(warning);
+      this.tweens.add({ targets: warning, alpha: 0.2, duration: 700, yoyo: true, repeat: 4 });
+    }
+  }
+
+  playScenarioAction(action: ScenarioAction, token: string) {
+    if (token === this.lastScenarioActionToken) return;
+    this.lastScenarioActionToken = token;
+    if (action === "panelClean") {
+      this.clearSolarPanelDust();
+      return;
+    }
+    const repair = this.add.graphics();
+    repair.lineStyle(3, 0x9bc79b, 0.9);
+    repair.strokeRoundedRect(82, 187, 205, 120, 12);
+    this.scenery.add(repair);
+    this.tweens.add({ targets: repair, alpha: 0, duration: 900, onComplete: () => repair.destroy() });
+  }
+
+  private clearSolarPanelDust() {
+    if (!this.solarPanelDust || this.solarPanelDust.alpha === 0) return;
+    this.tweens.add({ targets: this.solarPanelDust, alpha: 0, duration: 750 });
+  }
+
+  private clearScenarioVisuals() {
+    if (!this.scenarioVisuals) return;
+    this.tweens.killTweensOf(this.scenarioVisuals.list);
+    this.scenarioVisuals.destroy(true);
+    this.scenarioVisuals = null;
+  }
+
+  private createAstronaut(x: number, y: number) {
+    const container = this.add.container(x, y) as Player;
+    const g = this.add.graphics();
+    const leftLeg = this.add.graphics();
+    const rightLeg = this.add.graphics();
+    const leftArm = this.add.graphics();
+    const rightArm = this.add.graphics();
+    for (const limb of [leftLeg, rightLeg, leftArm, rightArm]) {
+      limb.fillStyle(0xe7e1d5, 1);
+    }
+    leftLeg.fillRoundedRect(-9, 13, 7, 13, 3);
+    rightLeg.fillRoundedRect(2, 13, 7, 13, 3);
+    leftArm.fillRoundedRect(-17, 2, 6, 14, 3);
+    rightArm.fillRoundedRect(11, 2, 6, 14, 3);
+    g.fillStyle(0x222426, 0.38);
+    g.fillEllipse(0, 20, 34, 11);
+    g.fillStyle(0xd9d5cb, 1);
+    g.fillRoundedRect(-11, -1, 22, 23, 7);
+    g.fillStyle(0xf3eee4, 1);
+    g.fillCircle(0, -11, 12);
+    g.fillStyle(0x50616a, 1);
+    g.fillEllipse(0, -11, 17, 10);
+    g.lineStyle(2, 0xd7a56e, 1);
+    g.strokeCircle(0, -11, 12);
+    g.fillStyle(0xd7a56e, 1);
+    g.fillCircle(-7, 7, 2);
+    g.fillCircle(7, 7, 2);
+    g.fillStyle(0xe7e1d5, 1);
+    g.fillRoundedRect(-13, 4, 5, 15, 2);
+    g.fillRoundedRect(8, 4, 5, 15, 2);
+    container.bodyGraphics = g;
+    container.leftLeg = leftLeg;
+    container.rightLeg = rightLeg;
+    container.leftArm = leftArm;
+    container.rightArm = rightArm;
+    container.add([leftLeg, rightLeg, leftArm, rightArm, g]);
+    return container;
+  }
+
+  private resizeScene(size: Phaser.Structs.Size) {
+    if (!this.scenery || !this.prompt) return;
+    const scaleX = size.width / 900;
+    const scaleY = size.height / 440;
+    this.scenery.setScale(scaleX, scaleY);
+    this.prompt.setScale(Math.min(scaleX, scaleY));
+    this.controlHint.setPosition(size.width - 16, 16);
+  }
+
+  private getWorldBounds() {
+    const width = 900;
+    const height = 440;
+    return {
+      left: this.playerRadius,
+      right: width - this.playerRadius,
+      top: this.playerRadius,
+      bottom: height - this.playerRadius - 28,
+    };
+  }
+
+  private focusCanvas = () => this.game.canvas.focus();
+
+  private handleKeyDown = (event: KeyboardEvent) => {
+    if (!this.controlsEnabled || document.activeElement !== this.game.canvas) return;
+    const key = event.key.toLowerCase();
+    if (["w", "a", "s", "d", "arrowup", "arrowdown", "arrowleft", "arrowright", "e"].includes(key)) {
+      event.preventDefault();
+      this.pressedKeys.add(key);
+      if (key === "e" && !event.repeat) this.interact();
+    }
+  };
+
+  private handleKeyUp = (event: KeyboardEvent) => {
+    this.pressedKeys.delete(event.key.toLowerCase());
+  };
+
+  private clearPressedKeys = () => this.pressedKeys.clear();
+
+  setControlsEnabled(enabled: boolean) {
+    this.controlsEnabled = enabled;
+    this.clearPressedKeys();
+    if (!enabled && document.activeElement === this.game.canvas) this.game.canvas.blur();
+  }
+
+  showGreenhouseEffect(effect: GreenhouseEffect) {
+    if (effect === "upgrade") {
+      this.greenhouseGlass.clear();
+      this.greenhouseGlass.fillStyle(0x9de4ae, 0.86);
+      this.greenhouseGlass.fillRoundedRect(614, 204, 118, 86, 8);
+    }
+    const flash = this.add.graphics();
+    if (effect === "harvest") {
+      flash.fillStyle(0x8df59b, 0.35);
+      flash.fillRoundedRect(602, 192, 142, 113, 12);
+      flash.lineStyle(4, 0x9cff9b, 0.9);
+      flash.strokeRoundedRect(602, 192, 142, 113, 12);
+    } else {
+      flash.lineStyle(3, effect === "upgrade" ? 0xb6ffcd : 0xf0bb76, 0.95);
+      flash.strokeRoundedRect(597, 187, 152, 123, 14);
+      flash.lineBetween(610, 201, 736, 296);
+      flash.lineBetween(736, 201, 610, 296);
+    }
+    this.scenery.add(flash);
+    this.tweens.add({ targets: flash, alpha: 0, duration: 650, onComplete: () => flash.destroy() });
+  }
+
+  private animateAstronaut(moving: boolean, direction: number, time: number) {
+    if (!this.player) return;
+    const swing = moving ? Math.sin(time / 85) * 0.55 : 0;
+    this.player.bodyGraphics.setY(moving ? Math.abs(Math.sin(time / 85)) * -2 : Math.sin(time / 380));
+    this.player.leftLeg.setRotation(swing * direction);
+    this.player.rightLeg.setRotation(-swing * direction);
+    this.player.leftArm.setRotation(-swing * direction * 0.7);
+    this.player.rightArm.setRotation(swing * direction * 0.7);
+  }
+
+  private interact() {
+    if (!this.player || Phaser.Math.Distance.Between(this.player.x, this.player.y, 665, 214) >= 100) return;
+    this.options.onInteract("greenhouse");
+  }
+
+  private cleanup() {
+    this.game.canvas.removeEventListener("pointerdown", this.focusCanvas);
+    this.game.canvas.removeEventListener("keydown", this.handleKeyDown);
+    this.game.canvas.removeEventListener("keyup", this.handleKeyUp);
+    this.game.canvas.removeEventListener("blur", this.clearPressedKeys);
+    window.removeEventListener("blur", this.clearPressedKeys);
+    this.pressedKeys.clear();
+    this.scale.off(Phaser.Scale.Events.RESIZE, this.resizeScene, this);
+  }
+}
+

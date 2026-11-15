@@ -47,12 +47,12 @@ export default function MainMenu({
       <header className="main-menu__header">
         <div className="main-menu__brand">
           <Orbit size={25} strokeWidth={1.8} />
-          <span>ARES-7 MISSION CONTROL</span>
+          <span>ARES-7 GÖREV KONTROL</span>
         </div>
 
         <div className="main-menu__system">
           <span className="main-menu__status-dot" />
-          <span>SYSTEM ONLINE</span>
+          <span>SİSTEM AKTİF</span>
         </div>
       </header>
 
@@ -75,35 +75,35 @@ export default function MainMenu({
 
           <div className="main-menu__subtitle">
             <span className="main-menu__subtitle-line" />
-            <span>MARS SURVIVAL SIMULATION</span>
+            <span>MARS'TA HAYATTA KALMA SİMÜLASYONU</span>
             <span className="main-menu__subtitle-line" />
           </div>
 
           <p className="main-menu__tagline">
-            30 Sols. One Habitat. Every Decision Matters.
+            30 Sol. Tek Bir Üs. Her Karar Önemli.
           </p>
         </div>
 
         {/* MENU BUTTONS */}
-        <nav className="main-menu__navigation" aria-label="Main navigation">
+        <nav className="main-menu__navigation" aria-label="Ana gezinme">
           <GameButton primary icon={<Play size={22} />} onClick={onStart}>
-            START MISSION
+            GÖREVİ BAŞLAT
           </GameButton>
 
           <GameButton icon={<BookOpen size={21} />} onClick={onBriefing}>
-            MISSION BRIEFING
+            GÖREV BİLGİLENDİRMESİ
           </GameButton>
 
           <GameButton icon={<Database size={21} />} onClick={onNasaData}>
-            NASA DATA
+            NASA VERİLERİ
           </GameButton>
 
           <GameButton icon={<Settings size={21} />} onClick={onSettings}>
-            SETTINGS
+            AYARLAR
           </GameButton>
 
           <GameButton icon={<Info size={21} />} onClick={onAbout}>
-            ABOUT
+            HAKKINDA
           </GameButton>
         </nav>
       </section>
@@ -112,7 +112,7 @@ export default function MainMenu({
       <footer className="main-menu__footer">
         <div className="main-menu__footer-left">
           <Activity size={17} />
-          <span>MISSION: ARES-7</span>
+          <span>GÖREV: ARES-7</span>
         </div>
 
         <div className="main-menu__footer-center" aria-hidden="true">
@@ -121,7 +121,7 @@ export default function MainMenu({
         </div>
 
         <div className="main-menu__footer-right">
-          <span>BUILD 001</span>
+          <span>SÜRÜM 001</span>
         </div>
       </footer>
     </main>
